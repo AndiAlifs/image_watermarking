@@ -72,7 +72,7 @@ def DCT(coverImage, watermarkImage):
     watermarkImage = np.round(np.reshape(watermarkImage,(w1*w2, 1)),0)
 
     if w1*w2 > max_message:
-        print 'Message too large to fit'
+        print('Message too large to fit')
 
     message_pad = np.ones((max_message,1), np.float32)
     message_pad[0:w1*w2] = watermarkImage
@@ -257,8 +257,8 @@ def DWT_DCT_SVD(coverImage, watermarkImage):
     cv2.imshow('watermarkedImage',watermarkedImage)
         
 if __name__ == "__main__":
-    coverImage = cv2.imread('brain.jpg',0)
-    watermarkImage = cv2.imread('lenna.jpg',0)
+    coverImage = cv2.imread('sari.JPG',0)
+    watermarkImage = cv2.imread('ttdpakfits.PNG',0)
 
     options = {1 : DWT,
            2 : DCT,
@@ -268,7 +268,8 @@ if __name__ == "__main__":
            6 : DWT_DCT_SVD,
     }
     val = input('What \type of embedding you want to perform?\n1.DWT\n2.DCT\n3.DFT\n4.SVD\n5.SVD-DWT\n6.SVD-DCT-DWT')
+    val = int(val)
     options[val](coverImage,watermarkImage)
-        
+
     cv2.waitKey(0)
     cv2.destroyAllWindows()
